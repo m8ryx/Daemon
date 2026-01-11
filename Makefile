@@ -20,7 +20,7 @@ SECTIONS = \
 # Full paths to section files
 SECTION_FILES = $(addprefix $(SECTIONS_DIR)/, $(SECTIONS))
 
-.PHONY: all clean help check
+.PHONY: all clean help check deploy deploy-web deploy-api
 
 # Default target
 all: $(OUTPUT)
@@ -63,15 +63,34 @@ check:
 	fi; \
 	echo "✅ $(OUTPUT) is up to date"
 
+# Deploy website to S3/CloudFront
+deploy-web: $(OUTPUT)
+	@echo "🚀 Deploying website to S3..."
+	@./deploy/deploy-s3.sh
+	@echo "✅ Website deployed"
+
+# Deploy Lambda API
+deploy-api: $(OUTPUT)
+	@echo "🚀 Deploying Lambda API..."
+	@./deploy/deploy-lambda.sh
+	@echo "✅ Lambda API deployed"
+
+# Deploy both website and API
+deploy: deploy-web deploy-api
+	@echo "✅ Full deployment complete"
+
 # Help
 help:
 	@echo "Daemon Build System"
 	@echo ""
 	@echo "Targets:"
-	@echo "  make        - Build daemon.md from section files"
-	@echo "  make clean  - Remove generated daemon.md"
-	@echo "  make check  - Verify daemon.md is up to date"
-	@echo "  make help   - Show this help message"
+	@echo "  make             - Build daemon.md from section files"
+	@echo "  make clean       - Remove generated daemon.md"
+	@echo "  make check       - Verify daemon.md is up to date"
+	@echo "  make deploy      - Deploy both website and API"
+	@echo "  make deploy-web  - Deploy website to S3/CloudFront"
+	@echo "  make deploy-api  - Deploy Lambda API"
+	@echo "  make help        - Show this help message"
 	@echo ""
 	@echo "Section files ($(words $(SECTIONS))):"
 	@for section in $(SECTIONS); do \
