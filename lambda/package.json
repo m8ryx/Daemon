@@ -1,0 +1,16 @@
+{
+  "name": "daemon-mcp-lambda",
+  "version": "1.0.0",
+  "description": "AWS Lambda function for Daemon MCP API",
+  "type": "module",
+  "main": "mcp-server.js",
+  "scripts": {
+    "build": "bun build mcp-server.ts --target=node --outdir=dist",
+    "package": "cd dist && zip -r ../lambda.zip . && cd .. && cp ../public/daemon.md dist/ && cd dist && zip -ur ../lambda.zip daemon.md",
+    "deploy": "aws lambda update-function-code --function-name daemon-mcp --zip-file fileb://lambda.zip"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "bun-types": "latest"
+  }
+}

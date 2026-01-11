@@ -11,7 +11,7 @@ enabled = false
 
 # Custom domain route
 routes = [
-  { pattern = "daemon.danielmiessler.com", custom_domain = true }
+  { pattern = "daemon.rick.rezinas.com", custom_domain = true }
 ]
 
 [site]

@@ -10,102 +10,63 @@ Content follows until the next section.
 
 [ABOUT]
 
-My name is Daniel Miessler (MEE-slur) and I'm a Cybersecurity guy turned Cyber/AI guy based out of the San Francisco Bay Area.
+My name is Rick Rezinas and I love cooking, technology, gaming, and family. I am a fan of the Timbers and Thorns. You'll see me on the mountain on a pair of skis making poor decisions.
 
-My main projects right now are Frame—an AI application building platform, Human 3.0—A system for upgrading humans to prepare for what's coming, and Threshold—an application that filters the internet by what you're guaranteed to like.
-
-I spend most of my time thinking about how AI will change work and society. I live in the Bay Area and write at danielmiessler.com. My goal is pretty simple: help people figure out what they're meant to do with their lives, especially as the world changes rapidly around us.
+I've lived in Portland for over 30 years, having been brought here to attend Reed College where I earned my BA in Physics. Afterwards I obtained a Master's degree in Teaching, and promptly went into IT. I have focused on infrastructure and connection since then.
 
 [CURRENT_LOCATION]
 
-Currently home in the Bay Area
+Currently home in Portland, Oregon
 
 [MISSION]
 
-Increase human Eudaimonia by helping people identify, articulate, and pursue their own purpose in life. Build systems—heavily leveraging the latest in AI—that help people upgrade to the best possible version of themselves (Human 3.0). Transfer (or store) my and B's minds into a format that we can upload into the next (digital) version of our lives.
+Impact humanity positively by connecting democratization of technology and emerging capabilities with systems thinking and games. Foundationally, this is driven by the belief that empowering others elevates all.
 
 [TELOS]
 
 TELOS is my personal framework for tracking purpose and direction in life. It's a structured way to document Problems I want to solve, Missions to address them, Goals to achieve, and Metrics to track progress. The name comes from the Greek word for purpose or end goal.
 
 Problems (P) - The most important issues I see in the world that need solving:
-- P1: People lack meaning in their lives, and this is about to get far worse because of AI and robotics taking away most traditional jobs
-- P2: People are stuck in a 1950's style hierarchical mindset that makes them think they're not one of the "special ones" with ideas and dreams
-- P3: People have poor models for how the world works, and the lack the tools to properly improve them
+- P1: Technology at scale yields great power with no demand for reflection or responsibility
+- P2: Interconnection is a part of all lives, but the flow inherent in them compounds inequality
+- P3: There are often many truths, but they can be drowned and misrepresented
 
 Missions (M) - My approaches to addressing these problems:
-- M1: Increase human Eudaimonia by helping people identify, articulate, and pursue their own purpose in life
-- M2: Build systems—heavily leveraging the latest in AI—that help people upgrade to the best possible version of themselves (Human 3.0)
-- M3: Transfer (or store) my and B's minds into a format that we can upload into the next (digital) version of our lives
+- (To be developed)
 
 [FAVORITE_BOOKS]
 
-- "1929" (currently reading)
-- "Mathematica", by David Bessis
-- "Meditations" by Marcus Aurelius
-- "The Obstacle Is the Way" by Ryan Holiday
-- "Sapiens" by Yuval Noah Harari
-- "The Singularity Is Near" by Ray Kurzweil
-- "Zero to One" by Peter Thiel
-- "The Art of War" by Sun Tzu
-- "Antifragile" by Nassim Nicholas Taleb
-- "The Black Swan" by Nassim Nicholas Taleb
-- "Thinking, Fast and Slow" by Daniel Kahneman
-- "The Lean Startup" by Eric Ries
+- "Noumenon" by Marina J. Lostetter
+- "The Light From Uncommon Stars" by Ryka Aoki
+- "Children of Time" by Adrian Tchaikovsky
+- "Everything is Miscellaneous" by David Weinberger
+- "The Speed of Trust" by Stephen M.R. Covey
+- "The Medici Effect" by Frans Johansson
 
 [FAVORITE_MOVIES]
 
-- The Matrix
-- Pulp Fiction
-- Ex Machina
-- Blade Runner 2049
-- Her
-- Arrival
-- Interstellar
-- Gattaca
-
-[FAVORITE_PODCASTS]
-
-- The Joe Rogan Experience
-- Lex Fridman Podcast
-- Huberman Lab
-- Making Sense with Sam Harris
-- The Tim Ferriss Show
+- The Lobster
+- Flow
+- Dune
 
 [DAILY_ROUTINE]
 
-- 8AM Wakeup
-- Outside 🚶🏼‍➡️Walk in the ☀️Sunlight for 5-10 minutes
-- Avoid inputs that could be interesting / distracting
-- 💊 Vitamins / Supplements / Nootropics
-- 🥛 Small Protein shake
-- ☕ Caffeine
-- 📅 Start agenda
-- Chipotle Bowl (Brown Rice / Black Beans) around lunch sometimes
-- Protein Shake for lunch sometimes
-- Try to walk around 5-30 minutes near dusk (not strict on this)
-- Sleep with Eye Mask and Earplugs, around 2300-1AM
+- Walk the dog and soak in some daylight
+- Enjoy my smoothie
+- Rest is in flux
 
 [PREFERENCES]
 
-- Writing tools: Neovim with Tokyo Night Storm theme
-- Programming languages: Go, Python, TypeScript
-- Operating system: macOS with extensive CLI customization
-- Coffee: Black, no sugar
-- Music: Electronic, ambient, classical
-- Exercise: Running, hiking, martial arts
-- Learning style: Reading, building, teaching
-- Communication: Direct, honest, philosophical
-- Work style: Deep focus blocks, automation-heavy
-- Values: Curiosity, growth, helping others, building useful things
+- Tools: CLI over GUI (the lightsaber to the blaster), Obsidian for notes, nvim, kiro, Claude Code
+- Browser: Vivaldi
+- Programming languages: Python and Shell, with burgeoning TypeScript
+- Operating system: Linux for home, macOS for work
+- Infrastructure: Powered by AWS
+- Work style: Lead with listening, work to understand the whole picture, infrastructure-focused, precision-oriented, CLI-first
+- Values: Connection, empowerment through technology, systems thinking, family, democratization
+- Communication: Direct, thoughtful, systems-minded
 
 [PREDICTIONS]
 
-- Recession-like shock caused by AI job loss by 2027 (Chances About Even)
-- We'll have AGI between 2025 and 2028 (Almost Certain)
-- Open-source models will largely catch up to closed-source models (Probable)
-- Apple is about to go from the worst AI implementation to the best (Probable)
-- Everyone, including people, will have an API (Almost Certain)
-- Personal daemons will broadcast preferences (Almost Certain)
-- Venues personalize based on customer preferences (Almost Certain)
-- People will lack meaning and look for it in games (Almost Certain)
+- AI will begin to have opinions this year (2026)
+- Things in the US will get worse before they get better

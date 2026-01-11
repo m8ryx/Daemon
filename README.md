@@ -9,9 +9,9 @@
 </p>
 
 <p align="center">
-  <a href="https://daemon.danielmiessler.com">Live Site</a> ·
-  <a href="https://danielmiessler.com/blog/real-internet-of-things">The Real Internet of Things</a> ·
-  <a href="https://danielmiessler.com/blog/human-3-creator-revolution">Human 3.0</a>
+  <a href="https://daemon.rick.rezinas.com">Live Site</a> ·
+  <a href="#deployment">Deployment Guide</a> ·
+  <a href="#customization">Customize</a>
 </p>
 
 <p align="center">
@@ -40,43 +40,67 @@ Think of it as your digital business card, but infinitely more powerful:
 - **For AI systems**: An MCP (Model Context Protocol) server that can be queried programmatically
 - **For connection**: A standardized way for your AI assistant to talk to someone else's AI assistant
 
-## This is the Actual Code
+## This is Real, Production Code
 
-This repository contains the exact code running at [daemon.danielmiessler.com](https://daemon.danielmiessler.com). It's not a demo or a template—it's the real thing. Fork it, customize it, and deploy your own daemon.
+This repository contains production-ready daemon code. It's fully functional and can be deployed to AWS with automated scripts. Customize it with your own information and deploy your personal daemon.
 
 ## Features
 
 - **Static Website**: Beautiful, fast Astro-based site showcasing your daemon info
-- **MCP Server**: Query your daemon programmatically via the Model Context Protocol
-- **Cloudflare Pages**: Deploy globally with zero configuration
-- **Forkable**: Designed to be forked and customized for your own daemon
+- **MCP Server**: AWS Lambda-based JSON-RPC API for programmatic access
+- **Private S3 + CloudFront**: Secure deployment with Origin Access Control
+- **Automated Deployment**: Scripts for S3, CloudFront, Lambda, and API Gateway
+- **Fully Customizable**: Edit one markdown file to update your entire daemon
 
 ## Quick Start
 
 ```bash
-# Clone the repo
-git clone https://github.com/danielmiessler/Daemon.git
-cd Daemon
-
 # Install dependencies
 bun install
 
 # Run locally
 bun run dev
+# Visit http://localhost:5177
+
+# Edit your personal data
+vim public/daemon.md
 
 # Build for production
 bun run build
-
-# Deploy to Cloudflare Pages
-npx wrangler pages deploy dist --project-name=your-daemon-name
 ```
+
+## Deployment
+
+This daemon uses **AWS infrastructure** with automated deployment scripts.
+
+**Quick Deploy:**
+```bash
+# 1. Deploy to private S3
+./deploy/deploy-s3.sh
+
+# 2. Set up CloudFront with OAC
+./deploy/setup-cloudfront.sh
+
+# 3. Deploy Lambda MCP server
+./deploy/deploy-lambda.sh
+
+# 4. Set up API Gateway
+./deploy/setup-api-gateway.sh
+```
+
+See detailed guides:
+- **[QUICK_DEPLOY.md](QUICK_DEPLOY.md)** - Fast reference for deployment
+- **[AWS_DEPLOYMENT.md](AWS_DEPLOYMENT.md)** - Complete deployment guide with architecture
+
+**Security:** S3 bucket is PRIVATE, only accessible via CloudFront using Origin Access Control (OAC).
 
 ## Customization
 
-1. **Edit your daemon info**: Update `public/daemon.md` with your own information
-2. **Customize the design**: Modify the Astro components in `src/`
-3. **Update branding**: Replace images in `public/` with your own
-4. **Deploy**: Push to your own Cloudflare Pages project
+1. **Edit your daemon info**: Update `public/daemon.md` with your information
+   - About, mission, books, movies, preferences, predictions, TELOS framework
+2. **Update branding**: Replace images in `public/` (favicon, og-image)
+3. **Customize design**: Modify Astro components in `src/components/`
+4. **Deploy**: Run deployment scripts (see [QUICK_DEPLOY.md](QUICK_DEPLOY.md))
 
 ## Architecture
 
@@ -98,32 +122,38 @@ Your mission statement...
 
 Available sections: `ABOUT`, `CURRENT_LOCATION`, `MISSION`, `TELOS`, `FAVORITE_BOOKS`, `FAVORITE_MOVIES`, `FAVORITE_PODCASTS`, `DAILY_ROUTINE`, `PREFERENCES`, `PREDICTIONS`
 
-### How the Live Site Works
+### How It Works
 
-The live site at [daemon.danielmiessler.com](https://daemon.danielmiessler.com) uses a two-component architecture:
+Two-component architecture:
 
-1. **This repo** → The Astro website (what you're looking at)
-2. **MCP Server** → A separate Cloudflare Worker that serves the daemon data via API
+```
+User → CloudFront (with OAC) → Private S3 Bucket
+                                  ↓
+                            Static Website
+                                  ↓
+                    Fetches from MCP API (optional)
 
-The website's dashboard fetches data from the MCP server at `mcp.daemon.danielmiessler.com`. This enables real-time API access for AI systems while the static site provides the human-readable interface.
+AI → API Gateway → Lambda Function → daemon.md
+                                       ↓
+                               JSON-RPC 2.0 Response
+```
 
-### For Forkers: MCP Server Setup (Advanced)
+1. **Static Website** (Astro):
+   - Beautiful human-readable dashboard
+   - Deployed to private S3, served via CloudFront
+   - Optionally fetches from MCP API for live data
 
-If you want the full experience with a queryable MCP endpoint:
+2. **MCP Server** (AWS Lambda):
+   - Parses `daemon.md` at runtime
+   - Serves structured data via JSON-RPC 2.0
+   - Accessible at `mcp.daemon.rick.rezinas.com`
+   - 11 endpoints: get_about, get_mission, get_telos, etc.
 
-1. The MCP server is a separate Cloudflare Worker that:
-   - Parses your `daemon.md` file
-   - Stores the data in Cloudflare KV
-   - Serves it via JSON-RPC (MCP protocol)
-
-2. You'll need to:
-   - Create a Cloudflare Worker for your MCP endpoint
-   - Set up a KV namespace for data storage
-   - Update the dashboard component to point to your MCP URL
-
-3. The MCP server code and setup instructions will be documented separately.
-
-**Note**: The static site works without the MCP component—you just won't have the live API functionality until you set up your own MCP server.
+3. **Security**:
+   - S3 bucket is private (no public access)
+   - CloudFront uses OAC to authenticate with S3
+   - HTTPS enforced everywhere
+   - Lambda has CORS enabled for browser access
 
 ## Why Should You Have a Daemon?
 
@@ -144,10 +174,24 @@ This isn't about replacing human interaction—it's about **enabling more of it*
 
 ## Tech Stack
 
+**Frontend:**
 - [Astro](https://astro.build) - Static site generation
-- [Bun](https://bun.sh) - JavaScript runtime
-- [Cloudflare Pages](https://pages.cloudflare.com) - Hosting and deployment
-- [MCP](https://modelcontextprotocol.io) - Model Context Protocol for AI integration
+- [React](https://react.dev) - Interactive components
+- [Tailwind CSS](https://tailwindcss.com) - Styling
+- [Framer Motion](https://www.framer.com/motion/) - Animations
+
+**Backend:**
+- [AWS Lambda](https://aws.amazon.com/lambda/) - Serverless MCP API
+- [API Gateway](https://aws.amazon.com/api-gateway/) - REST API endpoint
+- [Bun](https://bun.sh) - Build tool and JavaScript runtime
+
+**Infrastructure:**
+- [Amazon S3](https://aws.amazon.com/s3/) - Private static file storage
+- [CloudFront](https://aws.amazon.com/cloudfront/) - CDN with Origin Access Control
+- [ACM](https://aws.amazon.com/certificate-manager/) - SSL certificates
+
+**Protocol:**
+- [MCP](https://modelcontextprotocol.io) - Model Context Protocol (JSON-RPC 2.0)
 
 ## Related Projects
 
