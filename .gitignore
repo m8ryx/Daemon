@@ -6,6 +6,9 @@ out
 dist
 *.tgz
 
+# deployment artifacts
+lambda/*.zip
+
 # code coverage
 coverage
 *.lcov
