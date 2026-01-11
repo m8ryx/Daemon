@@ -70,3 +70,15 @@ Missions (M) - My approaches to addressing these problems:
 
 - AI will begin to have opinions this year (2026)
 - Things in the US will get worse before they get better
+
+[PROJECTS]
+
+Technical:
+- proj - A tool to help manage personal projects
+
+Creative:
+- Unspecified narrative RPG
+
+Personal:
+- Increase personal reach
+

@@ -9,7 +9,16 @@ ROLE_NAME="daemon-mcp-role"
 
 echo "🚀 Deploying Daemon MCP Lambda..."
 
-cd "$(dirname "$0")/../lambda"
+# Build daemon.md from sections first
+cd "$(dirname "$0")/.."
+echo "📦 Building daemon.md from sections..."
+make
+if [ $? -ne 0 ]; then
+  echo "❌ Failed to build daemon.md"
+  exit 1
+fi
+
+cd lambda
 
 # Build and package Lambda
 echo "📦 Building Lambda function..."

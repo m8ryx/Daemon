@@ -17,6 +17,11 @@ interface DaemonData {
   favorite_movies?: string[];
   favorite_podcasts?: string[];
   predictions?: string[];
+  projects?: {
+    technical?: string[];
+    creative?: string[];
+    personal?: string[];
+  };
   last_updated?: string;
 }
 
@@ -72,6 +77,33 @@ function parseDaemonMd(content: string): DaemonData {
       if (items.length > 0) {
         (data as any)[section] = items;
       }
+    }
+  }
+
+  // Parse projects section (categorized)
+  if (sections.projects) {
+    const projects: { technical?: string[]; creative?: string[]; personal?: string[] } = {};
+    const lines = sections.projects.split('\n');
+    let currentCategory: 'technical' | 'creative' | 'personal' | null = null;
+
+    for (const line of lines) {
+      const trimmed = line.trim().toLowerCase();
+      if (trimmed.startsWith('technical:')) {
+        currentCategory = 'technical';
+      } else if (trimmed.startsWith('creative:')) {
+        currentCategory = 'creative';
+      } else if (trimmed.startsWith('personal:')) {
+        currentCategory = 'personal';
+      } else if (currentCategory && line.trim().startsWith('-')) {
+        if (!projects[currentCategory]) {
+          projects[currentCategory] = [];
+        }
+        projects[currentCategory]!.push(line.trim().slice(1).trim());
+      }
+    }
+
+    if (Object.keys(projects).length > 0) {
+      data.projects = projects;
     }
   }
 
