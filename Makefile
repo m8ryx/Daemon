@@ -3,6 +3,7 @@
 
 SECTIONS_DIR = public/sections
 OUTPUT = public/daemon.md
+PROJECT_VISIBILITY = "public"
 
 # Section files in order
 SECTIONS = \
@@ -20,7 +21,7 @@ SECTIONS = \
 # Full paths to section files
 SECTION_FILES = $(addprefix $(SECTIONS_DIR)/, $(SECTIONS))
 
-.PHONY: all clean help check deploy deploy-web deploy-api
+.PHONY: all clean help projects check deploy deploy-web deploy-api
 
 # Default target
 all: $(OUTPUT)
@@ -78,6 +79,10 @@ deploy-api: $(OUTPUT)
 # Deploy both website and API
 deploy: deploy-web deploy-api
 	@echo "✅ Full deployment complete"
+
+projects:
+	@echo "Generating projects from proj"
+	@proj export-daemon --visibility $(PROJECT_VISIBILITY) > $(SECTIONS_DIR)/projects.md
 
 # Help
 help:

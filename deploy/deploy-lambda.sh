@@ -113,13 +113,23 @@ FUNCTION_ARN=$(aws lambda get-function --function-name ${FUNCTION_NAME} --query 
 echo ""
 echo "✅ Lambda deployed successfully!"
 echo "📍 Function ARN: ${FUNCTION_ARN}"
-echo ""
-echo "🔗 Next steps:"
-echo "1. Create API Gateway REST API"
-echo "2. Create a resource and POST method"
-echo "3. Set up Lambda integration"
-echo "4. Enable CORS"
-echo "5. Deploy API to a stage"
-echo "6. Set up custom domain: mcp.daemon.rick.rezinas.com"
-echo ""
-echo "Or use the automated script: deploy/setup-api-gateway.sh"
+
+# Check if API Gateway exists
+API_NAME="${API_NAME:-daemon-mcp-api}"
+API_ID=$(aws apigateway get-rest-apis --query "items[?name=='${API_NAME}'].id" --output text --region ${REGION} 2>/dev/null)
+
+if [ -z "$API_ID" ] || [ "$API_ID" = "None" ]; then
+  echo ""
+  echo "🔗 Next steps:"
+  echo "1. Create API Gateway REST API"
+  echo "2. Create a resource and POST method"
+  echo "3. Set up Lambda integration"
+  echo "4. Enable CORS"
+  echo "5. Deploy API to a stage"
+  echo "6. Set up custom domain: ${API_DOMAIN:-mcp.daemon.rick.rezinas.com}"
+  echo ""
+  echo "Or use the automated script: deploy/setup-api-gateway.sh"
+else
+  echo ""
+  echo "✅ API Gateway already configured (${API_ID})"
+fi
