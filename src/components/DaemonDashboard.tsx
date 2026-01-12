@@ -466,14 +466,49 @@ export function DaemonDashboard() {
               <span className="font-mono text-sm font-semibold tracking-wider text-text-tertiary uppercase">Projects</span>
             </div>
             <div className="overflow-y-auto flex-1 pr-1">
-              <div className="space-y-2 pb-3">
-                <SafeList
-                  items={daemonData.projects?.technical}
-                  fallback="No projects listed"
-                  renderItem={(proj, i) => (
-                    <p key={i} className="text-sm text-text-tertiary">{proj}</p>
-                  )}
-                />
+              <div className="space-y-3 pb-3">
+                {daemonData.projects?.technical && daemonData.projects.technical.length > 0 && (
+                  <div>
+                    <h4 className="text-xs font-mono font-semibold text-text-secondary mb-1 uppercase tracking-wider">Technical</h4>
+                    <SafeList
+                      items={daemonData.projects.technical}
+                      fallback=""
+                      renderItem={(proj, i) => (
+                        <p key={i} className="text-sm text-text-tertiary">{proj}</p>
+                      )}
+                    />
+                  </div>
+                )}
+                {daemonData.projects?.creative && daemonData.projects.creative.length > 0 && (
+                  <div>
+                    <h4 className="text-xs font-mono font-semibold text-text-secondary mb-1 uppercase tracking-wider">Creative</h4>
+                    <SafeList
+                      items={daemonData.projects.creative}
+                      fallback=""
+                      renderItem={(proj, i) => (
+                        <p key={i} className="text-sm text-text-tertiary">{proj}</p>
+                      )}
+                    />
+                  </div>
+                )}
+                {daemonData.projects?.personal && daemonData.projects.personal.length > 0 && (
+                  <div>
+                    <h4 className="text-xs font-mono font-semibold text-text-secondary mb-1 uppercase tracking-wider">Personal</h4>
+                    <SafeList
+                      items={daemonData.projects.personal}
+                      fallback=""
+                      renderItem={(proj, i) => (
+                        <p key={i} className="text-sm text-text-tertiary">{proj}</p>
+                      )}
+                    />
+                  </div>
+                )}
+                {(!daemonData.projects ||
+                  (!daemonData.projects.technical?.length &&
+                   !daemonData.projects.creative?.length &&
+                   !daemonData.projects.personal?.length)) && (
+                  <p className="text-sm text-text-tertiary">No projects listed</p>
+                )}
               </div>
             </div>
           </motion.div>

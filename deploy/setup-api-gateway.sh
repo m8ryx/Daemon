@@ -3,10 +3,15 @@
 
 set -e
 
-FUNCTION_NAME="daemon-mcp"
-API_NAME="daemon-mcp-api"
-REGION="us-west-2"
-STAGE_NAME="prod"
+# Load environment variables
+if [ -f "$(dirname "$0")/../.env" ]; then
+  export $(grep -v '^#' "$(dirname "$0")/../.env" | xargs)
+fi
+
+FUNCTION_NAME="${LAMBDA_FUNCTION_NAME:-daemon-mcp}"
+API_NAME="${API_NAME:-daemon-mcp-api}"
+REGION="${AWS_REGION:-us-west-2}"
+STAGE_NAME="${API_STAGE_NAME:-prod}"
 
 echo "🚀 Setting up API Gateway..."
 

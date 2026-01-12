@@ -3,9 +3,14 @@
 
 set -e
 
-BUCKET_NAME="daemon.rick.rezinas.com"
-DOMAIN_NAME="daemon.rick.rezinas.com"
-REGION="us-west-2"
+# Load environment variables
+if [ -f "$(dirname "$0")/../.env" ]; then
+  export $(grep -v '^#' "$(dirname "$0")/../.env" | xargs)
+fi
+
+BUCKET_NAME="${BUCKET_NAME:-daemon.rick.rezinas.com}"
+DOMAIN_NAME="${DOMAIN_NAME:-daemon.rick.rezinas.com}"
+REGION="${AWS_REGION:-us-west-2}"
 
 echo "🚀 Setting up CloudFront with Origin Access Control..."
 

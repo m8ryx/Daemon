@@ -91,11 +91,11 @@
 
 /* Tailwind v4 Theme - Tokyo Night Storm / Daemon Colors */
 @theme {
-  /* Brand Colors - Cyan/Teal for Daemon */
-  --color-brand: #7dcfff;
-  --color-brand-light: #89ddff;
-  --color-brand-dark: #0db9d7;
-  --color-brand-glow: rgba(125, 207, 255, 0.4);
+  /* Brand Colors - Reddish-Purple for Daemon */
+  --color-brand: #c678dd;
+  --color-brand-light: #e293f5;
+  --color-brand-dark: #a855d7;
+  --color-brand-glow: rgba(198, 120, 221, 0.4);
 
   /* Accent - Purple (Tokyo Night) */
   --color-accent: #9d7cd8;
@@ -121,7 +121,7 @@
   /* Borders */
   --color-border-subtle: rgba(59, 66, 97, 0.5);
   --color-border-default: #3b4261;
-  --color-border-emphasis: rgba(125, 207, 255, 0.3);
+  --color-border-emphasis: rgba(198, 120, 221, 0.3);
 
   /* Fonts */
   --font-display: 'Advocate Wide', 'Advocate', sans-serif;
@@ -285,8 +285,8 @@ body {
 /* Grid background */
 .bg-grid {
   background-image:
-    linear-gradient(rgba(125, 207, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(125, 207, 255, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(198, 120, 221, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(198, 120, 221, 0.03) 1px, transparent 1px);
   background-size: 40px 40px;
 }
 

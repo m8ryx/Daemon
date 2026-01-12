@@ -3,8 +3,13 @@
 
 set -e
 
-BUCKET_NAME="daemon.rick.rezinas.com"
-REGION="us-west-2"
+# Load environment variables
+if [ -f "$(dirname "$0")/../.env" ]; then
+  export $(grep -v '^#' "$(dirname "$0")/../.env" | xargs)
+fi
+
+BUCKET_NAME="${BUCKET_NAME:-daemon.rick.rezinas.com}"
+REGION="${AWS_REGION:-us-west-2}"
 
 echo "🚀 Deploying Daemon to AWS (Private S3 + CloudFront)..."
 

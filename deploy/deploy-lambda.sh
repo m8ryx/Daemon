@@ -3,9 +3,14 @@
 
 set -e
 
-FUNCTION_NAME="daemon-mcp"
-REGION="us-west-2"
-ROLE_NAME="daemon-mcp-role"
+# Load environment variables
+if [ -f "$(dirname "$0")/../.env" ]; then
+  export $(grep -v '^#' "$(dirname "$0")/../.env" | xargs)
+fi
+
+FUNCTION_NAME="${LAMBDA_FUNCTION_NAME:-daemon-mcp}"
+REGION="${AWS_REGION:-us-west-2}"
+ROLE_NAME="${LAMBDA_ROLE_NAME:-daemon-mcp-role}"
 
 echo "🚀 Deploying Daemon MCP Lambda..."
 
