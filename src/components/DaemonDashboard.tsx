@@ -115,6 +115,24 @@ function SafeList({
   return <>{items.map(renderItem)}</>;
 }
 
+function ProjectItem({ text }: { text: string }) {
+  const linkMatch = text.match(/^\[([^\]]+)\]\(([^)]+)\)(.*)$/);
+  if (linkMatch) {
+    const [, linkText, url, rest] = linkMatch;
+    return (
+      <p className="text-sm text-text-tertiary">
+        <a href={url} target="_blank" rel="noopener noreferrer"
+           className="text-brand hover:text-brand-light transition-colors inline-flex items-center gap-1">
+          {linkText}
+          <ExternalLink className="w-3 h-3" />
+        </a>
+        {rest && <span>{rest}</span>}
+      </p>
+    );
+  }
+  return <p className="text-sm text-text-tertiary">{text}</p>;
+}
+
 function StatusBar({
   isConnected,
   toolCount,
@@ -474,7 +492,7 @@ export function DaemonDashboard() {
                       items={daemonData.projects.technical}
                       fallback=""
                       renderItem={(proj, i) => (
-                        <p key={i} className="text-sm text-text-tertiary">{proj}</p>
+                        <ProjectItem key={i} text={proj} />
                       )}
                     />
                   </div>
@@ -486,7 +504,7 @@ export function DaemonDashboard() {
                       items={daemonData.projects.creative}
                       fallback=""
                       renderItem={(proj, i) => (
-                        <p key={i} className="text-sm text-text-tertiary">{proj}</p>
+                        <ProjectItem key={i} text={proj} />
                       )}
                     />
                   </div>
@@ -498,7 +516,7 @@ export function DaemonDashboard() {
                       items={daemonData.projects.personal}
                       fallback=""
                       renderItem={(proj, i) => (
-                        <p key={i} className="text-sm text-text-tertiary">{proj}</p>
+                        <ProjectItem key={i} text={proj} />
                       )}
                     />
                   </div>
